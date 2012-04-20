@@ -1,5 +1,6 @@
 package com.blogspot.activeactive.kata;
 
+import org.junit.Before;
 import org.junit.Test;
 import java.util.Collection;
 import java.util.ArrayList;
@@ -10,21 +11,26 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class BankOcrTest  {
 
+  private BankOcr cut;
+
+  @Before
+  public void createClassUnderTest() {
+    cut = new BankOcr();
+  }
+
   @Test
   public void cut_shouldExist() {
-    assertThat(new BankOcr(), is(notNullValue()));
+    assertThat(cut, is(notNullValue()));
   }
 
   @Test
   public void parseLines_shouldAcceptACollectionOfStringValues() {
-    final BankOcr cut = new BankOcr();
     final Collection<String> lines = new ArrayList<String>();
     cut.parseLines(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void parseLines_shouldRejectANullValuedCollection() {
-    final BankOcr cut = new BankOcr();
     cut.parseLines(null);
   }
 }

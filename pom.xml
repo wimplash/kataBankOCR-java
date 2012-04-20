@@ -35,6 +35,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <failOnViolation>true</failOnViolation>
+          <ccnLimit>8</ccnLimit>
+          <ncssLimit>100</ncssLimit>
+        </configuration>
       </plugin>
     </plugins>
   </build>

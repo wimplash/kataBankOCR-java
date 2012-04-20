@@ -1,6 +1,8 @@
 package com.blogspot.activeactive.kata;
 
 import org.junit.Test;
+import java.util.Collection;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -14,8 +16,9 @@ public class BankOcrTest  {
   }
 
   @Test
-  public void parse_shouldAcceptAStringValue() {
+  public void parseLines_shouldAcceptACollectionOfStringValues() {
     final BankOcr cut = new BankOcr();
-    cut.parse("");
+    final Collection<String> lines = new ArrayList<String>();
+    cut.parseLines(lines);
   }
 }

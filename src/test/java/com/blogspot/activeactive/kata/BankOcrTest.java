@@ -2,7 +2,7 @@ package com.blogspot.activeactive.kata;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Collection;
+import java.util.List;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertThat;
@@ -24,8 +24,8 @@ public class BankOcrTest  {
   }
 
   @Test
-  public void parseLines_shouldAcceptACollectionOfStringValues() {
-    final Collection<String> lines = new ArrayList<String>();
+  public void parseLines_shouldAcceptAListOfStringValues() {
+    final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add(" _ | | _ | | _ | | _ | | _ ");
     }
@@ -33,19 +33,19 @@ public class BankOcrTest  {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectANullValuedCollection() {
+  public void parseLines_shouldRejectANullValuedList() {
     cut.parseLines(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectAnEmptyCollection() {
-    final Collection<String> lines = new ArrayList<String>();
+  public void parseLines_shouldRejectAnEmptyList() {
+    final List<String> lines = new ArrayList<String>();
     cut.parseLines(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectACollectionWhichDoesNotContainAMultipleOfFourLines() {
-    final Collection<String> lines = new ArrayList<String>();
+  public void parseLines_shouldRejectAListWhichDoesNotContainAMultipleOfFourLines() {
+    final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 3; i++) {
       lines.add("");
     }
@@ -53,8 +53,8 @@ public class BankOcrTest  {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectACollectionForWhichEachElementDoesNotContainTwentySevenCharacters() {
-    final Collection<String> lines = new ArrayList<String>();
+  public void parseLines_shouldRejectAListForWhichEachElementDoesNotContainTwentySevenCharacters() {
+    final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add("12345678901234567890123456");
     }
@@ -62,8 +62,8 @@ public class BankOcrTest  {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectACollectionForWhichAnElementContainsInvalidCharacters() {
-    final Collection<String> lines = new ArrayList<String>();
+  public void parseLines_shouldRejectAListForWhichAnElementContainsInvalidCharacters() {
+    final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add(" _ | | _ | | _ | | _ | | _1");
     }

@@ -21,4 +21,10 @@ public class BankOcrTest  {
     final Collection<String> lines = new ArrayList<String>();
     cut.parseLines(lines);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void parseLines_shouldRejectANullValuedCollection() {
+    final BankOcr cut = new BankOcr();
+    cut.parseLines(null);
+  }
 }

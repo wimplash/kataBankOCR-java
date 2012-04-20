@@ -27,7 +27,7 @@ public class BankOcrTest  {
   public void parseLines_shouldAcceptACollectionOfStringValues() {
     final Collection<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
-      lines.add("");
+      lines.add("123456789012345678901234567");
     }
     cut.parseLines(lines);
   }
@@ -48,6 +48,15 @@ public class BankOcrTest  {
     final Collection<String> lines = new ArrayList<String>();
     for (int i = 0; i < 3; i++) {
       lines.add("");
+    }
+    cut.parseLines(lines);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void parseLines_shouldRejectACollectionForWhichEachElementDoesNotContainTwentySevenCharacters() {
+    final Collection<String> lines = new ArrayList<String>();
+    for (int i = 0; i < 4; i++) {
+      lines.add("12345678901234567890123456");
     }
     cut.parseLines(lines);
   }

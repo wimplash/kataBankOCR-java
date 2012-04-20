@@ -13,6 +13,11 @@ public class BankOcr {
           + " parameter must contain exactly four lines. The lines parameter"
           + " does not contain a whole number of valid entries.");
     }
-    /* NO-OP */
+    for (final String line : lines) {
+      if (line.length() != 27) {
+        throw new IllegalArgumentException("Each valid line contained in the"
+            + " lines parameter must contain exactly 27 characters.");
+      }
+    }
   }
 }

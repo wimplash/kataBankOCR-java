@@ -69,4 +69,20 @@ public class BankOcrTest  {
     }
     cut.parseLines(lines);
   }
+
+  @Test
+  public void parseLines_shouldSeparateLinesIntoAListOfStringArrays() {
+    final String testLine = " _ | | _ | | _ | | _ | | _ ";
+    final List<String> testLines = new ArrayList<String>();
+    for (int i = 0; i < 4; i++) {
+      testLines.add(testLine);
+    }
+    final List<String[]> result = cut.parseLines(testLines);
+    assertThat(result.size(), is(1));
+    final String[] entry = result.iterator().next();
+    assertThat(entry.length, is(4));
+    for (final String line : entry) {
+      assertThat(line, is(testLine));
+    }
+  }
 }

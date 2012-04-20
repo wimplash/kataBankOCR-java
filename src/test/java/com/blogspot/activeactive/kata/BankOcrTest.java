@@ -12,4 +12,10 @@ public class BankOcrTest  {
   public void cut_shouldExist() {
     assertThat(new BankOcr(), is(notNullValue()));
   }
+
+  @Test
+  public void parse_shouldAcceptAStringValue() {
+    final BankOcr cut = new BankOcr();
+    cut.parse("");
+  }
 }

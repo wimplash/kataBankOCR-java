@@ -8,6 +8,11 @@ public class BankOcr {
       throw new IllegalArgumentException("The lines parameter is required and"
           + " must not be null-valued or empty.");
     }
+    if ((lines.size() % 4) != 0) {
+      throw new IllegalArgumentException("Each valid entry in the lines"
+          + " parameter must contain exactly four lines. The lines parameter"
+          + " does not contain a whole number of valid entries.");
+    }
     /* NO-OP */
   }
 }

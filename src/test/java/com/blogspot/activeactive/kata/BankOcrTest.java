@@ -26,7 +26,9 @@ public class BankOcrTest  {
   @Test
   public void parseLines_shouldAcceptACollectionOfStringValues() {
     final Collection<String> lines = new ArrayList<String>();
-    lines.add("");
+    for (int i = 0; i < 4; i++) {
+      lines.add("");
+    }
     cut.parseLines(lines);
   }
 
@@ -38,6 +40,15 @@ public class BankOcrTest  {
   @Test(expected = IllegalArgumentException.class)
   public void parseLines_shouldRejectAnEmptyCollection() {
     final Collection<String> lines = new ArrayList<String>();
+    cut.parseLines(lines);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void parseLines_shouldRejectACollectionWhichDoesNotContainAMultipleOfFourLines() {
+    final Collection<String> lines = new ArrayList<String>();
+    for (int i = 0; i < 3; i++) {
+      lines.add("");
+    }
     cut.parseLines(lines);
   }
 }

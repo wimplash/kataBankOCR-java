@@ -18,6 +18,12 @@ public class BankOcr {
         throw new IllegalArgumentException("Each valid line contained in the"
             + " lines parameter must contain exactly 27 characters.");
       }
+      if (line.replaceAll("[|_ ]", "").equals("")) {
+      } else {
+        throw new IllegalArgumentException("Each valid line contained in the"
+            + " lines parameter may only contain underscore (\"_\")"
+            + " characters, pipe (\"|\") characters, or spaces (\" \").");
+      }
     }
   }
 }

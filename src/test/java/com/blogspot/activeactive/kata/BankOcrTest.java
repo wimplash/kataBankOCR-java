@@ -153,4 +153,10 @@ public class BankOcrTest  {
       "   "};
     cut.identifyCharacter(invalid);
   }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyThree() {
+    final int result = cut.identifyCharacter(BankOcr.THREE);
+    assertThat(result, is(3));
+  }
 }

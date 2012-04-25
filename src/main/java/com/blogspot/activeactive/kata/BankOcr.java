@@ -23,12 +23,19 @@ public class BankOcr {
     " _|",
     "|_ ",
     "   "};
+  public static final String[] THREE = new String[] {
+    " _ ",
+    " _|",
+    " _|",
+    "   "};
 
   protected int identifyCharacter(final String[] character) {
     if (ONE.equals(character)) {
       return 1;
     } else if (TWO.equals(character)) {
       return 2;
+    } else if (THREE.equals(character)) {
+      return 3;
     } else {
       final StringBuffer msg = new StringBuffer();
       msg.append("Could not identify the given character:");

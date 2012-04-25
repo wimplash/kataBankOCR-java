@@ -15,6 +15,10 @@ public class BankOcr {
           + " and must not be null-valued, empty, or contain only whitespace.");
     }
     final File f = new File(filename.trim());
+    if (! f.exists()) {
+      throw new IllegalArgumentException("The filename parameter is required"
+          + " but refers to a file which does not exist.");
+    }
     final FileReader fr = new FileReader(f);
     final BufferedReader br = new BufferedReader(fr);
     final List<String> results = new ArrayList<String>();

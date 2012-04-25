@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class BankOcr {
-  public List<String[]> parseFile(final List<String> contents) {
+  protected List<String[]> parseFile(final List<String> contents) {
     validateContents(contents);
 
     final List<String[]> result = new ArrayList<String[]>();

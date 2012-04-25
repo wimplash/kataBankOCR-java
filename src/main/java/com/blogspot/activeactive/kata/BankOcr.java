@@ -24,7 +24,7 @@ public class BankOcr {
     return results;
   }
 
-  protected List<String[]> parseFile(final List<String> contents) {
+  protected List<String[]> splitContents(final List<String> contents) {
     validateContents(contents);
 
     final List<String[]> result = new ArrayList<String[]>();

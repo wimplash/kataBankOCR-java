@@ -28,6 +28,41 @@ public class BankOcr {
     " _|",
     " _|",
     "   "};
+  public static final String[] FOUR = new String[] {
+    "   ",
+    "|_|",
+    "  |",
+    "   "};
+  public static final String[] FIVE = new String[] {
+    " _ ",
+    "|_ ",
+    " _|",
+    "   "};
+  public static final String[] SIX = new String[] {
+    " _ ",
+    "|_ ",
+    "|_|",
+    "   "};
+  public static final String[] SEVEN = new String[] {
+    " _ ",
+    "  |",
+    "  |",
+    "   "};
+  public static final String[] EIGHT = new String[] {
+    " _ ",
+    "|_|",
+    "|_|",
+    "   "};
+  public static final String[] NINE = new String[] {
+    " _ ",
+    "|_|",
+    " _|",
+    "   "};
+  public static final String[] ZERO = new String[] {
+    " _ ",
+    "| |",
+    "|_|",
+    "   "};
 
   protected int identifyCharacter(final String[] character) {
     if (matches(ONE, character)) {
@@ -36,6 +71,20 @@ public class BankOcr {
       return 2;
     } else if (matches(THREE, character)) {
       return 3;
+    } else if (matches(FOUR, character)) {
+      return 4;
+    } else if (matches(FIVE, character)) {
+      return 5;
+    } else if (matches(SIX, character)) {
+      return 6;
+    } else if (matches(SEVEN, character)) {
+      return 7;
+    } else if (matches(EIGHT, character)) {
+      return 8;
+    } else if (matches(NINE, character)) {
+      return 9;
+    } else if (matches(ZERO, character)) {
+      return 0;
     } else {
       final StringBuffer msg = new StringBuffer();
       msg.append("Could not identify the given character:");

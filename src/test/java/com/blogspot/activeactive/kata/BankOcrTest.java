@@ -174,4 +174,81 @@ public class BankOcrTest  {
     final int result = cut.identifyCharacter(character);
     assertThat(result, is(3));
   }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyFour() {
+    final String[] character = new String[] {
+      "   ",
+      "|_|",
+      "  |",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(4));
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyFive() {
+    final String[] character = new String[] {
+      " _ ",
+      "|_ ",
+      " _|",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(5));
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifySix() {
+    final String[] character = new String[] {
+      " _ ",
+      "|_ ",
+      "|_|",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(6));
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifySeven() {
+    final String[] character = new String[] {
+      " _ ",
+      "  |",
+      "  |",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(7));
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyEight() {
+    final String[] character = new String[] {
+      " _ ",
+      "|_|",
+      "|_|",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(8));
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyNine() {
+    final String[] character = new String[] {
+      " _ ",
+      "|_|",
+      " _|",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(9));
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyZero() {
+    final String[] character = new String[] {
+      " _ ",
+      "| |",
+      "|_|",
+      "   "};
+    final int result = cut.identifyCharacter(character);
+    assertThat(result, is(0));
+  }
 }

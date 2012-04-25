@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class BankOcr {
-  public List<String[]> parseLines(final List<String> lines) {
-    validateLines(lines);
+  public List<String[]> parseFile(final List<String> contents) {
+    validateContents(contents);
 
     final List<String[]> result = new ArrayList<String[]>();
     int lineIdx = 0;
     String[] entry = new String[4];
-    for (final String line : lines) {
+    for (final String line : contents) {
       validateLine(line);
       entry[lineIdx] = line;
       if (lineIdx == 3) {
@@ -36,15 +36,15 @@ public class BankOcr {
     }
   }
 
-  private void validateLines(final List<String> lines) {
-    if (lines == null || lines.isEmpty()) {
-      throw new IllegalArgumentException("The lines parameter is required and"
+  private void validateContents(final List<String> contents) {
+    if (contents == null || contents.isEmpty()) {
+      throw new IllegalArgumentException("The contents parameter is required and"
           + " must not be null-valued or empty.");
     }
-    if ((lines.size() % 4) != 0) {
-      throw new IllegalArgumentException("Each valid entry in the lines"
-          + " parameter must contain exactly four lines. The lines parameter"
-          + " does not contain a whole number of valid entries.");
+    if ((contents.size() % 4) != 0) {
+      throw new IllegalArgumentException("Each valid entry in the contents"
+          + " parameter must contain exactly four lines. The contents parameter"
+          + " does not contain a whole number of valid account number entries.");
     }
   }
 }

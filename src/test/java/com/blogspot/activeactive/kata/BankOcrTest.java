@@ -24,60 +24,60 @@ public class BankOcrTest  {
   }
 
   @Test
-  public void parseLines_shouldAcceptAListOfStringValues() {
+  public void parseFile_shouldAcceptAListOfStringValues() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add(" _ | | _ | | _ | | _ | | _ ");
     }
-    cut.parseLines(lines);
+    cut.parseFile(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectANullValuedList() {
-    cut.parseLines(null);
+  public void parseFile_shouldRejectANullValuedList() {
+    cut.parseFile(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectAnEmptyList() {
+  public void parseFile_shouldRejectAnEmptyList() {
     final List<String> lines = new ArrayList<String>();
-    cut.parseLines(lines);
+    cut.parseFile(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectAListWhichDoesNotContainAMultipleOfFourLines() {
+  public void parseFile_shouldRejectAListWhichDoesNotContainAMultipleOfFourLines() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 3; i++) {
       lines.add("");
     }
-    cut.parseLines(lines);
+    cut.parseFile(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectAListForWhichEachElementDoesNotContainTwentySevenCharacters() {
+  public void parseFile_shouldRejectAListForWhichEachElementDoesNotContainTwentySevenCharacters() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add("12345678901234567890123456");
     }
-    cut.parseLines(lines);
+    cut.parseFile(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void parseLines_shouldRejectAListForWhichAnElementContainsInvalidCharacters() {
+  public void parseFile_shouldRejectAListForWhichAnElementContainsInvalidCharacters() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add(" _ | | _ | | _ | | _ | | _1");
     }
-    cut.parseLines(lines);
+    cut.parseFile(lines);
   }
 
   @Test
-  public void parseLines_shouldSeparateLinesIntoAListOfStringArrays() {
+  public void parseFile_shouldSeparateLinesIntoAListOfStringArrays() {
     final String testLine = " _ | | _ | | _ | | _ | | _ ";
     final List<String> testLines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       testLines.add(testLine);
     }
-    final List<String[]> result = cut.parseLines(testLines);
+    final List<String[]> result = cut.parseFile(testLines);
     assertThat(result.size(), is(1));
     final String[] entry = result.iterator().next();
     assertThat(entry.length, is(4));

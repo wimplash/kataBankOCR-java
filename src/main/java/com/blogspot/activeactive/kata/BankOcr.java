@@ -13,8 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankOcr {
+  public static final String[] ONE = new String[] {
+    "   " +
+    "  |" +
+    "  |" +
+    "   "};
+  public static final String[] TWO = new String[] {
+    " _ " +
+    " _|" +
+    "|_ " +
+    "   "};
+
   protected int identifyCharacter(final String[] character) {
-    return 1;
+    if (ONE.equals(character)) {
+      return 1;
+    } else if (TWO.equals(character)) {
+      return 2;
+    } else {
+      return 0;
+    }
   }
 
   protected List<String> readFile(final String filename) throws IOException {

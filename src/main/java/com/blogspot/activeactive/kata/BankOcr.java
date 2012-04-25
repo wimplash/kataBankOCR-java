@@ -10,82 +10,99 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BankOcr {
-  public static final String[] ONE = new String[] {
-    "   ",
-    "  |",
-    "  |",
-    "   "};
-  public static final String[] TWO = new String[] {
-    " _ ",
-    " _|",
-    "|_ ",
-    "   "};
-  public static final String[] THREE = new String[] {
-    " _ ",
-    " _|",
-    " _|",
-    "   "};
-  public static final String[] FOUR = new String[] {
-    "   ",
-    "|_|",
-    "  |",
-    "   "};
-  public static final String[] FIVE = new String[] {
-    " _ ",
-    "|_ ",
-    " _|",
-    "   "};
-  public static final String[] SIX = new String[] {
-    " _ ",
-    "|_ ",
-    "|_|",
-    "   "};
-  public static final String[] SEVEN = new String[] {
-    " _ ",
-    "  |",
-    "  |",
-    "   "};
-  public static final String[] EIGHT = new String[] {
-    " _ ",
-    "|_|",
-    "|_|",
-    "   "};
-  public static final String[] NINE = new String[] {
-    " _ ",
-    "|_|",
-    " _|",
-    "   "};
-  public static final String[] ZERO = new String[] {
+
+  public static enum Numeral {
+    UNKNOWN(-1, null),
+    ZERO(0, new String[] {
     " _ ",
     "| |",
     "|_|",
-    "   "};
+    "   "}),
+    ONE(1, new String[] {
+    "   ",
+    "  |",
+    "  |",
+    "   "}),
+    TWO(2, new String[] {
+    " _ ",
+    " _|",
+    "|_ ",
+    "   "}),
+    THREE(3, new String[] {
+    " _ ",
+    " _|",
+    " _|",
+    "   "}),
+    FOUR(4, new String[] {
+    "   ",
+    "|_|",
+    "  |",
+    "   "}),
+    FIVE(5, new String[] {
+    " _ ",
+    "|_ ",
+    " _|",
+    "   "}),
+    SIX(6, new String[] {
+    " _ ",
+    "|_ ",
+    "|_|",
+    "   "}),
+    SEVEN(7, new String[] {
+    " _ ",
+    "  |",
+    "  |",
+    "   "}),
+    EIGHT(8, new String[] {
+    " _ ",
+    "|_|",
+    "|_|",
+    "   "}),
+    NINE(9, new String[] {
+    " _ ",
+    "|_|",
+    " _|",
+    "   "});
+
+
+    public final int value;
+    public final String[] representation;
+
+    private Numeral(final int value, final String[] representation) {
+      this.value = value;
+      this.representation = representation;
+    }
+
+    public static Numeral decode(final String[] representation) {
+      for (final Numeral numeral : Numeral.values()) {
+        if (UNKNOWN.equals(numeral)) {
+          continue;
+        }
+        if (numeral.matches(representation)) {
+          return numeral;
+        }
+      }
+      return UNKNOWN;
+    }
+
+    protected boolean matches(final String[] representation) {
+      for (int i = 0; i < 4; i++) {
+        if (! this.representation[i].equals(representation[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
 
   protected int identifyCharacter(final String[] character) {
-    if (matches(ONE, character)) {
-      return 1;
-    } else if (matches(TWO, character)) {
-      return 2;
-    } else if (matches(THREE, character)) {
-      return 3;
-    } else if (matches(FOUR, character)) {
-      return 4;
-    } else if (matches(FIVE, character)) {
-      return 5;
-    } else if (matches(SIX, character)) {
-      return 6;
-    } else if (matches(SEVEN, character)) {
-      return 7;
-    } else if (matches(EIGHT, character)) {
-      return 8;
-    } else if (matches(NINE, character)) {
-      return 9;
-    } else if (matches(ZERO, character)) {
-      return 0;
-    } else {
+    final Numeral n = Numeral.decode(character);
+    if (Numeral.UNKNOWN.equals(n)) {
       final StringBuffer msg = new StringBuffer();
       msg.append("Could not identify the given character:");
       msg.append(System.getProperty("line.separator"));
@@ -97,17 +114,9 @@ public class BankOcr {
       msg.append(System.getProperty("line.separator"));
       msg.append('\'').append(character[3]).append('\'');
       throw new IllegalArgumentException(msg.toString());
+    } else {
+      return n.value;
     }
-  }
-
-  protected boolean matches(final String[] character1,
-      final String[] character2) {
-    for (int i = 0; i < 4; i++) {
-      if (! character1[i].equals(character2[i])) {
-        return false;
-      }
-    }
-    return true;
   }
 
   protected List<String> readFile(final String filename) throws IOException {

@@ -143,4 +143,14 @@ public class BankOcrTest  {
     final int result = cut.identifyCharacter(BankOcr.TWO);
     assertThat(result, is(2));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void identifyCharacter_shouldFailForInvalidCharacter() {
+    final String[] invalid = new String[] {
+      " _ ",
+      " _ ",
+      " _ ",
+      "   "};
+    cut.identifyCharacter(invalid);
+  }
 }

@@ -14,14 +14,14 @@ import java.util.List;
 
 public class BankOcr {
   public static final String[] ONE = new String[] {
-    "   " +
-    "  |" +
-    "  |" +
+    "   ",
+    "  |",
+    "  |",
     "   "};
   public static final String[] TWO = new String[] {
-    " _ " +
-    " _|" +
-    "|_ " +
+    " _ ",
+    " _|",
+    "|_ ",
     "   "};
 
   protected int identifyCharacter(final String[] character) {
@@ -30,7 +30,17 @@ public class BankOcr {
     } else if (TWO.equals(character)) {
       return 2;
     } else {
-      return 0;
+      final StringBuffer msg = new StringBuffer();
+      msg.append("Could not identify the given character:");
+      msg.append(System.getProperty("line.separator"));
+      msg.append('\'').append(character[0]).append('\'');
+      msg.append(System.getProperty("line.separator"));
+      msg.append('\'').append(character[1]).append('\'');
+      msg.append(System.getProperty("line.separator"));
+      msg.append('\'').append(character[2]).append('\'');
+      msg.append(System.getProperty("line.separator"));
+      msg.append('\'').append(character[3]).append('\'');
+      throw new IllegalArgumentException(msg.toString());
     }
   }
 

@@ -106,4 +106,9 @@ public class BankOcrTest  {
   public void readFile_shouldFailWhenPassedAnEmptyString() throws Exception {
     cut.readFile("");
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void readFile_shouldFailWhenPassedAStringContainingOnlyWhitespace() throws Exception {
+    cut.readFile(" ");
+  }
 }

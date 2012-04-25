@@ -102,4 +102,8 @@ public class BankOcrTest  {
     cut.readFile(null);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void readFile_shouldFailWhenPassedAnEmptyString() throws Exception {
+    cut.readFile("");
+  }
 }

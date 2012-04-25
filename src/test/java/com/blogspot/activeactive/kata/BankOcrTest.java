@@ -14,6 +14,11 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class BankOcrTest  {
+  private static final String[] ONE = new String[] {
+    "   " +
+    "  |" +
+    "  |" +
+    "   "};
 
   private BankOcr cut;
 
@@ -130,5 +135,11 @@ public class BankOcrTest  {
   @Test(expected = IllegalArgumentException.class)
   public void readFile_shouldThrowIllegalArgumentExceptionWhenFileDoesNotExist() throws Exception {
     cut.readFile("not/a/real/.file");
+  }
+
+  @Test
+  public void identifyCharacter_shouldIdentifyOne() {
+    final int result = cut.identifyCharacter(ONE);
+    assertThat(result, is(1));
   }
 }

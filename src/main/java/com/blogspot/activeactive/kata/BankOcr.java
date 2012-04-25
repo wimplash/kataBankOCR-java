@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankOcr {
+  protected int identifyCharacter(final String[] character) {
+    return 1;
+  }
+
   protected List<String> readFile(final String filename) throws IOException {
     final BufferedReader br = createReader(filename);
     final List<String> results = new ArrayList<String>();

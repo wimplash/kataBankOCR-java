@@ -10,6 +10,10 @@ import java.util.List;
 
 public class BankOcr {
   protected List<String> readFile(final String filename) throws IOException {
+    if (filename == null) {
+      throw new IllegalArgumentException("The filename parameter is required"
+          + " and must not be null-valued.");
+    }
     final File f = new File(filename);
     final FileReader fr = new FileReader(f);
     final BufferedReader br = new BufferedReader(fr);

@@ -96,4 +96,10 @@ public class BankOcrTest  {
     expected.add("TEST LINE 4");
     assertThat(results, is(expected));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void readFile_shouldFailWhenPassedNull() throws Exception {
+    cut.readFile(null);
+  }
+
 }

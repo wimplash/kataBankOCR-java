@@ -1,3 +1,7 @@
+/**
+ * This code, and the development history behind it can be found at:
+ * http://www.github.com/wimplash/kataBankOCR-java
+ */
 package com.blogspot.activeactive.kata;
 
 import java.io.BufferedReader;
@@ -10,17 +14,7 @@ import java.util.List;
 
 public class BankOcr {
   protected List<String> readFile(final String filename) throws IOException {
-    if (filename == null || "".equals(filename.trim())) {
-      throw new IllegalArgumentException("The filename parameter is required"
-          + " and must not be null-valued, empty, or contain only whitespace.");
-    }
-    final File f = new File(filename.trim());
-    if (! f.exists()) {
-      throw new IllegalArgumentException("The filename parameter is required"
-          + " but refers to a file which does not exist.");
-    }
-    final FileReader fr = new FileReader(f);
-    final BufferedReader br = new BufferedReader(fr);
+    final BufferedReader br = createReader(filename);
     final List<String> results = new ArrayList<String>();
     String line = br.readLine();
     while (line != null) {
@@ -48,6 +42,34 @@ public class BankOcr {
       }
     }
     return result;
+  }
+
+  private BufferedReader createReader(final String filename) throws IOException {
+    validateFilename(filename);
+    final File f = new File(filename.trim());
+    validateFile(f);
+
+    /*
+     * Ideally, in a language other than java, I could find a way to
+     * mock an un-readable file in the tests to exercise this line, but
+     * I cannot easily do that here.
+     */
+    final FileReader fr = new FileReader(f);
+    return new BufferedReader(fr);
+  }
+
+  private void validateFile(final File file) {
+    if (! file.exists()) {
+      throw new IllegalArgumentException("The filename parameter is required"
+          + " but refers to a file which does not exist.");
+    }
+  }
+
+  private void validateFilename(final String filename) {
+    if (filename == null || "".equals(filename.trim())) {
+      throw new IllegalArgumentException("The filename parameter is required"
+          + " and must not be null-valued, empty, or contain only whitespace.");
+    }
   }
 
   private void validateLine(final String line) {

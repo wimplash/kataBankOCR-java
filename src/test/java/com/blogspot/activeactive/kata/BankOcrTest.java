@@ -1,3 +1,7 @@
+/**
+ * This code, and the development history behind it can be found at:
+ * http://www.github.com/wimplash/kataBankOCR-java
+ */
 package com.blogspot.activeactive.kata;
 
 import org.junit.Before;

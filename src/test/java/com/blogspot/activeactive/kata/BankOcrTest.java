@@ -85,4 +85,15 @@ public class BankOcrTest  {
       assertThat(line, is(testLine));
     }
   }
+
+  @Test
+  public void readFile_shouldReadAllLinesFromTheGivenFile() throws Exception {
+    final List<String> results = cut.readFile("src/test/java/.test");
+    final List<String> expected = new ArrayList<String>();
+    expected.add("TEST LINE 1");
+    expected.add("TEST LINE 2");
+    expected.add("TEST LINE 3");
+    expected.add("TEST LINE 4");
+    assertThat(results, is(expected));
+  }
 }

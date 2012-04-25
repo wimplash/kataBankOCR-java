@@ -1,9 +1,27 @@
 package com.blogspot.activeactive.kata;
 
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class BankOcr {
+  protected List<String> readFile(final String filename) throws IOException {
+    final File f = new File(filename);
+    final FileReader fr = new FileReader(f);
+    final BufferedReader br = new BufferedReader(fr);
+    final List<String> results = new ArrayList<String>();
+    String line = br.readLine();
+    while (line != null) {
+      results.add(line);
+      line = br.readLine();
+    }
+    return results;
+  }
+
   protected List<String[]> parseFile(final List<String> contents) {
     validateContents(contents);
 

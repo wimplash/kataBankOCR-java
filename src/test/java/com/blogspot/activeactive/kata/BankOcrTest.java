@@ -134,13 +134,23 @@ public class BankOcrTest  {
 
   @Test
   public void identifyCharacter_shouldIdentifyOne() {
-    final int result = cut.identifyCharacter(BankOcr.ONE);
+    final String[] character = new String[] {
+      "   ",
+      "  |",
+      "  |",
+      "   "};
+    final int result = cut.identifyCharacter(character);
     assertThat(result, is(1));
   }
 
   @Test
   public void identifyCharacter_shouldIdentifyTwo() {
-    final int result = cut.identifyCharacter(BankOcr.TWO);
+    final String[] character = new String[] {
+      " _ ",
+      " _|",
+      "|_ ",
+      "   "};
+    final int result = cut.identifyCharacter(character);
     assertThat(result, is(2));
   }
 
@@ -156,7 +166,12 @@ public class BankOcrTest  {
 
   @Test
   public void identifyCharacter_shouldIdentifyThree() {
-    final int result = cut.identifyCharacter(BankOcr.THREE);
+    final String[] character = new String[] {
+      " _ ",
+      " _|",
+      " _|",
+      "   "};
+    final int result = cut.identifyCharacter(character);
     assertThat(result, is(3));
   }
 }

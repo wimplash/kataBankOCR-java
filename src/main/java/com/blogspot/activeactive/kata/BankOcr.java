@@ -30,11 +30,20 @@ public class BankOcr {
     "   "};
 
   protected int identifyCharacter(final String[] character) {
-    if (ONE.equals(character)) {
+    if (ONE[0].equals(character[0])
+        && ONE[1].equals(character[1])
+        && ONE[2].equals(character[2])
+        && ONE[3].equals(character[3])) {
       return 1;
-    } else if (TWO.equals(character)) {
+    } else if (TWO[0].equals(character[0])
+        && TWO[1].equals(character[1])
+        && TWO[2].equals(character[2])
+        && TWO[3].equals(character[3])) {
       return 2;
-    } else if (THREE.equals(character)) {
+    } else if (THREE[0].equals(character[0])
+        && THREE[1].equals(character[1])
+        && THREE[2].equals(character[2])
+        && THREE[3].equals(character[3])) {
       return 3;
     } else {
       final StringBuffer msg = new StringBuffer();

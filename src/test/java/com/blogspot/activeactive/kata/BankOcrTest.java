@@ -111,4 +111,15 @@ public class BankOcrTest  {
   public void readFile_shouldFailWhenPassedAStringContainingOnlyWhitespace() throws Exception {
     cut.readFile(" ");
   }
+
+  @Test
+  public void readFile_shouldIgnoreLeadingAndTrailingWhitespaceInFilenameParameter() throws Exception {
+    final List<String> results = cut.readFile(" src/test/java/.test ");
+    final List<String> expected = new ArrayList<String>();
+    expected.add("TEST LINE 1");
+    expected.add("TEST LINE 2");
+    expected.add("TEST LINE 3");
+    expected.add("TEST LINE 4");
+    assertThat(results, is(expected));
+  }
 }

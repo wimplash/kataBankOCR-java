@@ -14,7 +14,7 @@ public class BankOcr {
       throw new IllegalArgumentException("The filename parameter is required"
           + " and must not be null-valued, empty, or contain only whitespace.");
     }
-    final File f = new File(filename);
+    final File f = new File(filename.trim());
     final FileReader fr = new FileReader(f);
     final BufferedReader br = new BufferedReader(fr);
     final List<String> results = new ArrayList<String>();

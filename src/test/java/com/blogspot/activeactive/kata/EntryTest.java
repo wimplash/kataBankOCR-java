@@ -19,4 +19,14 @@ public class EntryTest {
     final String line = " _ | | _ | | _ | | _ | | _1";
     new Entry().addLine(line);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void addLine_shouldRejectANullValuedLine() {
+    new Entry().addLine(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void addLine_shouldRejectAnEmptyLine() {
+    new Entry().addLine("");
+  }
 }

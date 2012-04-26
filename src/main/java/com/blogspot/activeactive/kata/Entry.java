@@ -20,16 +20,20 @@ public class Entry {
   }
 
   public boolean addLine(final String line) {
+    validateLine(line);
     if (isFull()) {
       return false;
     } else {
-      validateLine(line);
       lines.add(line);
       return true;
     }
   }
 
   private void validateLine(final String line) {
+    if (line == null) {
+      throw new IllegalArgumentException("The line parameter is required and"
+          + " must not be null-valued.");
+    }
     if (line.length() != 27) {
       throw new IllegalArgumentException("Each valid line contained in the"
           + " lines parameter must contain exactly 27 characters.");

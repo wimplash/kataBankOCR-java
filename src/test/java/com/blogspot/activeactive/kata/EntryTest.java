@@ -66,4 +66,29 @@ public class EntryTest {
       assertThat(l, is(line));
     }
   }
+
+  @Test
+  public void isFull_shouldReturnFalseForANewEntry() {
+    assertThat(new Entry().isFull(), is(false));
+  }
+
+  @Test
+  public void isFull_shouldReturnFalseForAnEntryWithThreeLinesAdded() {
+    final Entry cut = new Entry();
+    final String line = " _ | | _ | | _ | | _ | | _ ";
+    for (int i = 0; i < 3; i++) {
+      cut.addLine(line);
+    }
+    assertThat(cut.isFull(), is(false));
+  }
+
+  @Test
+  public void isFull_shouldReturnTrueForAnEntryWithFourLinesAdded() {
+    final Entry cut = new Entry();
+    final String line = " _ | | _ | | _ | | _ | | _ ";
+    for (int i = 0; i < 4; i++) {
+      cut.addLine(line);
+    }
+    assertThat(cut.isFull(), is(true));
+  }
 }

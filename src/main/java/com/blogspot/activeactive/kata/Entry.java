@@ -44,4 +44,16 @@ public class Entry {
           + " characters, pipe (\"|\") characters, or spaces (\" \").");
     }
   }
+
+  public List<String[]> getCharacters() {
+    final List<String[]> characters = new ArrayList<String[]>();
+    for (int i = 0; i < 9; i++) {
+      final String[] result = new String[4];
+      for (int j = 0; j < 4; j++) {
+        result[j] = lines.get(j).substring(i * 3, (i + 1) * 3);
+      }
+      characters.add(result);
+    }
+    return characters;
+  }
 }

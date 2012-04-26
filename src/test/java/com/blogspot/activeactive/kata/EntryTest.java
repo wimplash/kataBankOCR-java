@@ -91,4 +91,19 @@ public class EntryTest {
     }
     assertThat(cut.isFull(), is(true));
   }
+
+  @Test
+  public void getCharacters_shouldReturnAListOfStringArraysForTheCharactersInTheEntry() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+    cut.addLine("                           ");
+    final List<String[]> results = cut.getCharacters();
+    for (int i = 0; i < 9; i++) {
+      final String[] result = results.get(i);
+      final Numeral n = Numeral.decode(result);
+      assertThat(n.value, is(i));
+    }
+  }
 }

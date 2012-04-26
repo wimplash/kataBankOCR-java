@@ -45,7 +45,11 @@ public class Entry {
     }
   }
 
-  public List<String[]> getCharacters() {
+  protected List<String[]> getCharacters() {
+    if (! isFull()) {
+      throw new IllegalStateException("The characters in an Entry can only be"
+          + " retrieved when the Entry has been fully populated.");
+    }
     final List<String[]> characters = new ArrayList<String[]>();
     for (int i = 0; i < 9; i++) {
       final String[] result = new String[4];

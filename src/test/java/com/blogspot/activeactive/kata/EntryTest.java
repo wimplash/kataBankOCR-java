@@ -106,4 +106,13 @@ public class EntryTest {
       assertThat(n.value, is(i));
     }
   }
+
+  @Test(expected = IllegalStateException.class)
+  public void getCharacters_shouldFailWhenTheEntryIsNotFull() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+    cut.getCharacters();
+  }
 }

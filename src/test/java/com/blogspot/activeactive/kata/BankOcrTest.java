@@ -257,4 +257,10 @@ public class BankOcrTest  {
     final String[][] characters = cut.splitEntry(new String[0]);
     assertThat(characters.length, is(0));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void splitEntry_shouldFailWhenPassedAStringArrayWhichIsNotFourLinesInLength() {
+    final String[] entry = new String[] { "   ", "   ", "   " };
+    cut.splitEntry(entry);
+  }
 }

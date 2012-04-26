@@ -207,11 +207,20 @@ public class BankOcr {
       throw new IllegalArgumentException("Each valid entry must contain"
           + " exactly four lines.");
     }
+    int width = 0;
     for (final String line : entry) {
-      if ((line.length() % 3) != 0) {
-        throw new IllegalArgumentException("Each line in a valid entry must"
-            + " contain a number of characters which is a multiple of three.");
+      if (width == 0 && line.length() != 0) {
+        width = line.length();
       }
+      if (line.length() != width) {
+        throw new IllegalArgumentException("Each line in a valid entry must"
+            + " contain a number of characters equal to the number of"
+            + " characters in every other line.");
+      }
+    }
+    if ((width % 3) != 0) {
+      throw new IllegalArgumentException("Each line in a valid entry must"
+          + " contain a number of characters which is a multiple of three.");
     }
     return new String[0][0];
   }

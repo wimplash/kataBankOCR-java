@@ -269,4 +269,10 @@ public class BankOcrTest  {
     final String[] entry = new String[] { "     ", "     ", "     ", "     " };
     cut.splitEntry(entry);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void splitEntry_shouldFailWhenPassedAStringArrayOfLengthFourContainingLinesWhichAreNotAllOfTheSameLength() {
+    final String[] entry = new String[] { "   ", "      ", "   ", "   " };
+    cut.splitEntry(entry);
+  }
 }

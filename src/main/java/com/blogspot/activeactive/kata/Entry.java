@@ -60,4 +60,12 @@ public class Entry {
     }
     return characters;
   }
+
+  public List<Integer> getDigits() {
+    final List<Integer> digits = new ArrayList<Integer>();
+    for (final String[] character : getCharacters()) {
+      digits.add(Numeral.decode(character).value);
+    }
+    return digits;
+  }
 }

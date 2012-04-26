@@ -115,4 +115,17 @@ public class EntryTest {
     cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
     cut.getCharacters();
   }
+
+  @Test
+  public void getDigits_shouldReturnAListOfIntegerValuesForTheCharactersInTheEntry() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+    cut.addLine("                           ");
+    final List<Integer> results = cut.getDigits();
+    for (int i = 0; i < 9; i++) {
+      assertThat(results.get(i), is(i));
+    }
+  }
 }

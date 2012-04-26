@@ -203,6 +203,11 @@ public class BankOcr {
   }
 
   protected String[][] splitEntry(final String[] entry) {
+    validateEntry(entry);
+    return new String[0][0];
+  }
+
+  private void validateEntry(final String[] entry) {
     if ((entry.length % 4) != 0) {
       throw new IllegalArgumentException("Each valid entry must contain"
           + " exactly four lines.");
@@ -222,6 +227,5 @@ public class BankOcr {
       throw new IllegalArgumentException("Each line in a valid entry must"
           + " contain a number of characters which is a multiple of three.");
     }
-    return new String[0][0];
   }
 }

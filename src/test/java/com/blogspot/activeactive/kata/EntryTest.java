@@ -129,6 +129,23 @@ public class EntryTest {
     }
   }
 
+  @Test
+  public void getDigits_shouldReturnANegativeOneValueForAnUnknownCharacter() {
+    final Entry cut = new Entry();
+    cut.addLine("       _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("| |  ||_  _|  | _||_|  ||_|");
+    cut.addLine("                           ");
+    final List<Integer> results = cut.getDigits();
+    for (int i = 0; i < 9; i++) {
+      if (i == 0) {
+        assertThat(results.get(i), is(-1));
+      } else {
+        assertThat(results.get(i), is(i));
+      }
+    }
+  }
+
   @Test(expected = IllegalStateException.class)
   public void getDigits_shouldFailWhenTheEntryIsNotFull() {
     final Entry cut = new Entry();

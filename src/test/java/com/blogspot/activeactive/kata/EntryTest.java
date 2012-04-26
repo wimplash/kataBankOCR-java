@@ -128,4 +128,13 @@ public class EntryTest {
       assertThat(results.get(i), is(i));
     }
   }
+
+  @Test(expected = IllegalStateException.class)
+  public void getDigits_shouldFailWhenTheEntryIsNotFull() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+    cut.getDigits();
+  }
 }

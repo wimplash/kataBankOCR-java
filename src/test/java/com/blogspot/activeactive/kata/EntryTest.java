@@ -6,6 +6,9 @@ package com.blogspot.activeactive.kata;
 
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 public class EntryTest {
   
   @Test(expected = IllegalArgumentException.class)
@@ -28,5 +31,10 @@ public class EntryTest {
   @Test(expected = IllegalArgumentException.class)
   public void addLine_shouldRejectAnEmptyLine() {
     new Entry().addLine("");
+  }
+
+  @Test
+  public void getLines_shouldReturnAnEmptyListForANewEntry() {
+    assertThat(new Entry().getLines().size(), is(0));
   }
 }

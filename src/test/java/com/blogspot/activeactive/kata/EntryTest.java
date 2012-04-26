@@ -52,4 +52,18 @@ public class EntryTest {
       assertThat(l, is(line));
     }
   }
+
+  @Test
+  public void getLines_shouldReturnTheFirstFourLinesForAnEntryWhichHasFiveLinesAdded() {
+    final Entry cut = new Entry();
+    final String line = " _ | | _ | | _ | | _ | | _ ";
+    for (int i = 0; i < 5; i++) {
+      cut.addLine(line);
+    }
+    final List<String> lines = cut.getLines();
+    assertThat(lines.size(), is(4));
+    for (final String l : lines) {
+      assertThat(l, is(line));
+    }
+  }
 }

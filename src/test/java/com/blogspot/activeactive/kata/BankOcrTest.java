@@ -28,64 +28,64 @@ public class BankOcrTest  {
   }
 
   @Test
-  public void splitContents_shouldAcceptAListOfStringValues() {
+  public void readEntries_shouldAcceptAListOfStringValues() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add(" _ | | _ | | _ | | _ | | _ ");
     }
-    cut.splitContents(lines);
+    cut.readEntries(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void splitContents_shouldRejectANullValuedList() {
-    cut.splitContents(null);
+  public void readEntries_shouldRejectANullValuedList() {
+    cut.readEntries(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void splitContents_shouldRejectAnEmptyList() {
+  public void readEntries_shouldRejectAnEmptyList() {
     final List<String> lines = new ArrayList<String>();
-    cut.splitContents(lines);
+    cut.readEntries(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void splitContents_shouldRejectAListWhichDoesNotContainAMultipleOfFourLines() {
+  public void readEntries_shouldRejectAListWhichDoesNotContainAMultipleOfFourLines() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 3; i++) {
       lines.add("");
     }
-    cut.splitContents(lines);
+    cut.readEntries(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void splitContents_shouldRejectAListForWhichEachElementDoesNotContainTwentySevenCharacters() {
+  public void readEntries_shouldRejectAListForWhichEachElementDoesNotContainTwentySevenCharacters() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add("12345678901234567890123456");
     }
-    cut.splitContents(lines);
+    cut.readEntries(lines);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void splitContents_shouldRejectAListForWhichAnElementContainsInvalidCharacters() {
+  public void readEntries_shouldRejectAListForWhichAnElementContainsInvalidCharacters() {
     final List<String> lines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       lines.add(" _ | | _ | | _ | | _ | | _1");
     }
-    cut.splitContents(lines);
+    cut.readEntries(lines);
   }
 
   @Test
-  public void splitContents_shouldSeparateLinesIntoAListOfStringArrays() {
+  public void readEntries_shouldSeparateLinesIntoAListOfEntries() {
     final String testLine = " _ | | _ | | _ | | _ | | _ ";
     final List<String> testLines = new ArrayList<String>();
     for (int i = 0; i < 4; i++) {
       testLines.add(testLine);
     }
-    final List<String[]> result = cut.splitContents(testLines);
+    final List<Entry> result = cut.readEntries(testLines);
     assertThat(result.size(), is(1));
-    final String[] entry = result.iterator().next();
-    assertThat(entry.length, is(4));
-    for (final String line : entry) {
+    final Entry entry = result.iterator().next();
+    assertThat(entry.getLines().size(), is(4));
+    for (final String line : entry.getLines()) {
       assertThat(line, is(testLine));
     }
   }

@@ -100,31 +100,4 @@ public class BankOcr {
           + " does not contain a whole number of valid account number entries.");
     }
   }
-
-  protected String[][] splitEntry(final String[] entry) {
-    validateEntry(entry);
-    return new String[0][0];
-  }
-
-  private void validateEntry(final String[] entry) {
-    if ((entry.length % 4) != 0) {
-      throw new IllegalArgumentException("Each valid entry must contain"
-          + " exactly four lines.");
-    }
-    int width = 0;
-    for (final String line : entry) {
-      if (width == 0 && line.length() != 0) {
-        width = line.length();
-      }
-      if (line.length() != width) {
-        throw new IllegalArgumentException("Each line in a valid entry must"
-            + " contain a number of characters equal to the number of"
-            + " characters in every other line.");
-      }
-    }
-    if ((width % 3) != 0) {
-      throw new IllegalArgumentException("Each line in a valid entry must"
-          + " contain a number of characters which is a multiple of three.");
-    }
-  }
 }

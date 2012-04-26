@@ -201,4 +201,8 @@ public class BankOcr {
           + " does not contain a whole number of valid account number entries.");
     }
   }
+
+  protected String[][] splitEntry(final String[] entry) {
+    return new String[0][0];
+  }
 }

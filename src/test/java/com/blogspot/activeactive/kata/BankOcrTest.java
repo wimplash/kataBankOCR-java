@@ -251,4 +251,10 @@ public class BankOcrTest  {
     final int result = cut.identifyCharacter(character);
     assertThat(result, is(0));
   }
+
+  @Test
+  public void splitEntry_shouldProduceAZeroLengthArrayOfStringArraysWhenPassedEmptyArray() {
+    final String[][] characters = cut.splitEntry(new String[0]);
+    assertThat(characters.length, is(0));
+  }
 }

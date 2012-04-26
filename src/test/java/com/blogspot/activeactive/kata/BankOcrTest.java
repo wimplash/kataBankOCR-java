@@ -94,10 +94,14 @@ public class BankOcrTest  {
   public void readFile_shouldReadAllLinesFromTheGivenFile() throws Exception {
     final List<String> results = cut.readFile("src/test/java/.test");
     final List<String> expected = new ArrayList<String>();
-    expected.add("TEST LINE 1");
-    expected.add("TEST LINE 2");
-    expected.add("TEST LINE 3");
-    expected.add("TEST LINE 4");
+    expected.add(" _     _  _     _  _  _  _ ");
+    expected.add("| |  | _| _||_||_ |_   ||_|");
+    expected.add("|_|  ||_  _|  | _||_|  ||_|");
+    expected.add("                           ");
+    expected.add("    _  _     _  _  _  _  _ ");
+    expected.add("  | _| _||_||_ |_   ||_||_|");
+    expected.add("  ||_  _|  | _||_|  ||_| _|");
+    expected.add("                           ");
     assertThat(results, is(expected));
   }
 
@@ -120,10 +124,14 @@ public class BankOcrTest  {
   public void readFile_shouldIgnoreLeadingAndTrailingWhitespaceInFilenameParameter() throws Exception {
     final List<String> results = cut.readFile(" src/test/java/.test ");
     final List<String> expected = new ArrayList<String>();
-    expected.add("TEST LINE 1");
-    expected.add("TEST LINE 2");
-    expected.add("TEST LINE 3");
-    expected.add("TEST LINE 4");
+    expected.add(" _     _  _     _  _  _  _ ");
+    expected.add("| |  | _| _||_||_ |_   ||_|");
+    expected.add("|_|  ||_  _|  | _||_|  ||_|");
+    expected.add("                           ");
+    expected.add("    _  _     _  _  _  _  _ ");
+    expected.add("  | _| _||_||_ |_   ||_||_|");
+    expected.add("  ||_  _|  | _||_|  ||_| _|");
+    expected.add("                           ");
     assertThat(results, is(expected));
   }
 

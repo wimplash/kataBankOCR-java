@@ -16,25 +16,6 @@ import java.util.Map;
 
 public class BankOcr {
 
-  protected int identifyCharacter(final String[] character) {
-    final Numeral n = Numeral.decode(character);
-    if (Numeral.UNKNOWN.equals(n)) {
-      final StringBuffer msg = new StringBuffer();
-      msg.append("Could not identify the given character:");
-      msg.append(System.getProperty("line.separator"));
-      msg.append('\'').append(character[0]).append('\'');
-      msg.append(System.getProperty("line.separator"));
-      msg.append('\'').append(character[1]).append('\'');
-      msg.append(System.getProperty("line.separator"));
-      msg.append('\'').append(character[2]).append('\'');
-      msg.append(System.getProperty("line.separator"));
-      msg.append('\'').append(character[3]).append('\'');
-      throw new IllegalArgumentException(msg.toString());
-    } else {
-      return n.value;
-    }
-  }
-
   protected List<String> readFile(final String filename) throws IOException {
     final BufferedReader br = createReader(filename);
     final List<String> results = new ArrayList<String>();

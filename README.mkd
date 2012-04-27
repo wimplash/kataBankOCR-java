@@ -4,5 +4,7 @@ This project implements the kata in Java with a Maven2 base for
 importing development tools.
 
 *User story 1 completed*
+
 *User story 2 completed*
+
 *User story 3 completed*

@@ -165,29 +165,26 @@ public class BankOcrTest  {
 
   @Test
   public void main_shouldWriteToDefaultFileWhenPassedOneInput() throws Exception {
-    BankOcr.main(new String[] { "src/test/java/.test" });
-
-    final File f = new File("output.txt");
-    assertThat(f.exists(), is(true));
-    final BufferedReader r = new BufferedReader(new FileReader(f));
-    final List<String> results = new ArrayList<String>();
-    String line = r.readLine();
-    while (line != null) {
-      results.add(line);
-      line = r.readLine();
-    }
-
     final List<String> expected = new ArrayList<String>();
     expected.add("012345678");
     expected.add("123456789");
-    assertThat(results, is(expected));
+
+    BankOcr.main(new String[] { "src/test/java/.test" });
+    assertThat(readFile("output.txt"), is(expected));
   }
 
   @Test
   public void main_shouldWriteToSpecifiedFileWhenPassedTwoInputs() throws Exception {
-    BankOcr.main(new String[] { "src/test/java/.test", "test.output" });
+    final List<String> expected = new ArrayList<String>();
+    expected.add("012345678");
+    expected.add("123456789");
 
-    final File f = new File("test.output");
+    BankOcr.main(new String[] { "src/test/java/.test", "test.output" });
+    assertThat(readFile("test.output"), is(expected));
+  }
+
+  private List<String> readFile(final String filename) throws Exception {
+    final File f = new File(filename);
     assertThat(f.exists(), is(true));
     final BufferedReader r = new BufferedReader(new FileReader(f));
     final List<String> results = new ArrayList<String>();
@@ -196,11 +193,7 @@ public class BankOcrTest  {
       results.add(line);
       line = r.readLine();
     }
-
-    final List<String> expected = new ArrayList<String>();
-    expected.add("012345678");
-    expected.add("123456789");
-    assertThat(results, is(expected));
+    return results;
   }
 
   @After

@@ -187,7 +187,7 @@ public class BankOcrTest  {
 
   private List<String> testFileLines() {
     final List<String> expected = new ArrayList<String>();
-    expected.add("012345678");
+    expected.add("012345678 ERR");
     expected.add("123456789");
     return expected;
   }

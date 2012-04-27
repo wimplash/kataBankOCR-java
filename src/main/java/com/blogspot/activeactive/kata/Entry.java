@@ -73,6 +73,9 @@ public class Entry {
       for (final Integer digit : getDigits()) {
         buff.append(digit);
       }
+      if (! isValid()) {
+        buff.append(" ERR");
+      }
       return buff.toString();
     } else {
       final StringBuffer buff = new StringBuffer("incomplete:");

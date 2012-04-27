@@ -173,14 +173,25 @@ public class EntryTest {
   }
 
   @Test
-  public void toString_shouldReturnAStringContainingTheIdentifiedDigitsWhenTheEntryIsFull() {
+  public void toString_shouldReturnAStringContainingTheIdentifiedDigitsWhenTheEntryIsFullAndTheEntryIsValid() {
     final Entry cut = new Entry();
-    cut.addLine(" _     _  _     _  _  _  _ ");
-    cut.addLine("| |  | _| _||_||_ |_   ||_|");
-    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+    cut.addLine(" _     _  _  _  _  _  _  _ ");
+    cut.addLine(" _||_||_ |_||_| _||_||_ |_ ");
+    cut.addLine(" _|  | _||_||_||_ |_||_| _|");
     cut.addLine("                           ");
 
-    assertThat(cut.toString(), is("012345678"));
+    assertThat(cut.toString(), is("345882865"));
+  }
+
+  @Test
+  public void toString_shouldReturnAStringContainingTheIdentifiedDigitsAndErrWhenTheEntryIsFullAndTheEntryIsInvalid() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _    ");
+    cut.addLine(" _||_||_ |_||_| _||_||_   |");
+    cut.addLine(" _|  | _||_||_||_ |_||_|  |");
+    cut.addLine("                           ");
+
+    assertThat(cut.toString(), is("345882861 ERR"));
   }
 
   @Test

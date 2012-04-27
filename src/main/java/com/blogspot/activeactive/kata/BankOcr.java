@@ -27,7 +27,7 @@ public class BankOcr {
     return results;
   }
 
-  protected List<Entry> readEntries(final List<String> contents) {
+  public List<Entry> readEntries(final List<String> contents) {
     validateContents(contents);
 
     final List<Entry> result = new ArrayList<Entry>();
@@ -38,6 +38,16 @@ public class BankOcr {
         result.add(entry);
         entry = new Entry();
       }
+    }
+    return result;
+  }
+
+  public List<String> parseFile(final String filename) throws IOException {
+    final List<String> contents = readFile(filename);
+    final List<Entry> entries = readEntries(contents);
+    final List<String> result = new ArrayList<String>();
+    for (final Entry entry : entries) {
+      result.add(entry.toString());
     }
     return result;
   }

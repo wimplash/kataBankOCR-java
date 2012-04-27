@@ -139,4 +139,13 @@ public class BankOcrTest  {
   public void readFile_shouldThrowIllegalArgumentExceptionWhenFileDoesNotExist() throws Exception {
     cut.readFile("not/a/real/.file");
   }
+
+  @Test
+  public void parseFile_shouldReturnAListOfStringsContainingTheParsedDigits() throws Exception {
+    final List<String> results = cut.parseFile("src/test/java/.test");
+    final List<String> expected = new ArrayList<String>();
+    expected.add("012345678");
+    expected.add("123456789");
+    assertThat(results, is(expected));
+  }
 }

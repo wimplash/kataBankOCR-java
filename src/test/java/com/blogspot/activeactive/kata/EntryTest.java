@@ -154,4 +154,32 @@ public class EntryTest {
     cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
     cut.getDigits();
   }
+
+  @Test
+  public void toString_shouldReturnIncompleteWithTheContainedLinesWhenTheEntryIsNotFull() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+
+    final StringBuffer buff = new StringBuffer("incomplete:")
+      .append(System.getProperty("line.separator"))
+      .append(" _     _  _     _  _  _  _ ")
+      .append(System.getProperty("line.separator"))
+      .append("| |  | _| _||_||_ |_   ||_|")
+      .append(System.getProperty("line.separator"))
+      .append("|_|  ||_  _|  | _||_|  ||_|");
+    assertThat(cut.toString(), is(buff.toString()));
+  }
+
+  @Test
+  public void toString_shouldReturnAStringContainingTheIdentifiedDigitsWhenTheEntryIsFull() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _     _  _  _  _ ");
+    cut.addLine("| |  | _| _||_||_ |_   ||_|");
+    cut.addLine("|_|  ||_  _|  | _||_|  ||_|");
+    cut.addLine("                           ");
+
+    assertThat(cut.toString(), is("012345678"));
+  }
 }

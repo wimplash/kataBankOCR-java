@@ -68,4 +68,21 @@ public class Entry {
     }
     return digits;
   }
+  @Override
+  public String toString() {
+    if (isFull()) {
+      final StringBuffer buff = new StringBuffer();
+      for (final Integer digit : getDigits()) {
+        buff.append(digit);
+      }
+      return buff.toString();
+    } else {
+      final StringBuffer buff = new StringBuffer("incomplete:");
+      for (final String line : lines) {
+        buff.append(System.getProperty("line.separator"));
+        buff.append(line);
+      }
+      return buff.toString();
+    }
+  }
 }

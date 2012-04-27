@@ -63,7 +63,7 @@ public class Entry {
   }
 
   public boolean isValid() {
-    return true;
+    return (getChecksum() % 11) == 0;
   }
 
   @Override

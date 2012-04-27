@@ -215,4 +215,14 @@ public class EntryTest {
     assertThat(cut.isValid(), is(true));
   }
 
+  @Test
+  public void isValid_shouldReturnFalseWhenTheEntryIsInvalid() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _    ");
+    cut.addLine(" _||_||_ |_||_| _||_||_   |");
+    cut.addLine(" _|  | _||_||_||_ |_||_|  |");
+    cut.addLine("                           ");
+
+    assertThat(cut.isValid(), is(false));
+  }
 }

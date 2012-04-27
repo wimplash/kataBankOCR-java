@@ -260,6 +260,16 @@ public class EntryTest {
   }
 
   @Test
+  public void isValid_shouldReturnFalseWhenTheEntryIsNotFull() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _    ");
+    cut.addLine(" _||_||_ |_||_| _||_||_   |");
+    cut.addLine(" _|  | _||_||_||_ |_||_|  |");
+
+    assertThat(cut.isValid(), is(false));
+  }
+
+  @Test
   public void hasIllegibleDigits_shouldReturnTrueWhenTheEntryContainsIllegibleDigits() {
     final Entry cut = new Entry();
     cut.addLine(" _     _     _  _  _  _  _ ");

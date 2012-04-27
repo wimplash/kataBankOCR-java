@@ -67,7 +67,7 @@ public class Entry {
   }
 
   public boolean isValid() {
-    return ! hasIllegibleDigits() && ((getChecksum() % 11) == 0);
+    return isFull() && ! hasIllegibleDigits() && ((getChecksum() % 11) == 0);
   }
 
   public boolean hasIllegibleDigits() {

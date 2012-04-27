@@ -79,9 +79,15 @@ public class Entry {
     if (isFull()) {
       final StringBuffer buff = new StringBuffer();
       for (final Integer digit : getDigits()) {
-        buff.append(digit);
+        if (digit == Numeral.UNKNOWN.value) {
+          buff.append('?');
+        } else {
+          buff.append(digit);
+        }
       }
-      if (! isValid()) {
+      if (hasIllegibleDigits()) {
+        buff.append(" ILL");
+      } else if (! isValid()) {
         buff.append(" ERR");
       }
       return buff.toString();

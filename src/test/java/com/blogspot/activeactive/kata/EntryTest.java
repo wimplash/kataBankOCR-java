@@ -195,6 +195,17 @@ public class EntryTest {
   }
 
   @Test
+  public void toString_shouldReturnAStringContainingTheIdentifiedDigitsAQuestionMarkForIllegibleDigitsAndIllWhenTheEntryIsFullAndTheEntryHasIllegibleDigits() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _     _  _  _  _    ");
+    cut.addLine(" _||_||_ | ||_| _||_||_   |");
+    cut.addLine(" _|  | _|| ||_||_ |_||_|  |");
+    cut.addLine("                           ");
+
+    assertThat(cut.toString(), is("345?82861 ILL"));
+  }
+
+  @Test
   public void getChecksum_shouldReturnTheChecksumForTheGivenEntry() {
     final Entry cut = new Entry();
     cut.addLine(" _     _  _  _  _  _  _  _ ");

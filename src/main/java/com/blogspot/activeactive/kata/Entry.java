@@ -41,7 +41,11 @@ public class Entry {
     final List<Integer> digits = getDigits();
     int checksum = 0;
     for (int i = 0; i < digits.size(); i++) {
-      checksum += (i + 1) * digits.get(digits.size() - (i + 1));
+      final int digit = digits.get(digits.size() - (i + 1));
+      if (digit == Numeral.UNKNOWN.value) {
+        throw new IllegalStateException("The entry contains illegible digits");
+      }
+      checksum += (i + 1) * digit;
     }
     return checksum;
   }

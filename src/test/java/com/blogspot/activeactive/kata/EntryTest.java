@@ -215,6 +215,17 @@ public class EntryTest {
     cut.getChecksum();
   }
 
+  @Test(expected = IllegalStateException.class)
+  public void getChecksum_shouldFailWhenTheEntryContainsIllegibleCharacters() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _     _  _  _  _  _ ");
+    cut.addLine(" _||_||_ | ||_| _||_||_ |_ ");
+    cut.addLine(" _|  | _|| ||_||_ |_||_| _|");
+    cut.addLine("                           ");
+
+    cut.getChecksum();
+  }
+
   @Test
   public void isValid_shouldReturnTrueWhenTheEntryIsValid() {
     final Entry cut = new Entry();

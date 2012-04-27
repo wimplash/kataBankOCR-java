@@ -5,3 +5,4 @@ importing development tools.
 
 *User story 1 completed*
 *User story 2 completed*
+*User story 3 completed*

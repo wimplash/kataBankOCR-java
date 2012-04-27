@@ -33,9 +33,12 @@ public class BankOcr {
       inputFile = args[0];
       outputFile = args[1];
     }
-    final BankOcr bankOcr = new BankOcr();
-    final List<String> results = bankOcr.parseFile(inputFile);
-    bankOcr.writeToFile(results, outputFile);
+    new BankOcr().parseAndWrite(inputFile, outputFile);
+  }
+
+  public void parseAndWrite(final String inputFilename,
+      final String outputFilename) throws IOException {
+    writeToFile(parseFile(inputFilename), outputFilename);
   }
 
   protected void writeToFile(final List<String> lines, final String filename)

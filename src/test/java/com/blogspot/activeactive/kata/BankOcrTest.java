@@ -96,21 +96,7 @@ public class BankOcrTest  {
 
   @Test
   public void readFile_shouldReadAllLinesFromTheGivenFile() throws Exception {
-    final List<String> results = cut.readFile("src/test/java/.test");
-    final List<String> expected = new ArrayList<String>();
-    expected.add(" _     _  _     _  _  _  _ ");
-    expected.add("| |  | _| _||_||_ |_   ||_|");
-    expected.add("|_|  ||_  _|  | _||_|  ||_|");
-    expected.add("                           ");
-    expected.add("    _  _     _  _  _  _  _ ");
-    expected.add("  | _| _||_||_ |_   ||_||_|");
-    expected.add("  ||_  _|  | _||_|  ||_| _|");
-    expected.add("                           ");
-    expected.add("    _  _     _  _  _     _ ");
-    expected.add("  | _| _||_||_ |_   || ||_|");
-    expected.add("  ||_  _|  | _||_|  || | _|");
-    expected.add("                           ");
-    assertThat(results, is(expected));
+    assertThat(cut.readFile("src/test/java/.test"), is(testRawFileLines()));
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -130,21 +116,7 @@ public class BankOcrTest  {
 
   @Test
   public void readFile_shouldIgnoreLeadingAndTrailingWhitespaceInFilenameParameter() throws Exception {
-    final List<String> results = cut.readFile(" src/test/java/.test ");
-    final List<String> expected = new ArrayList<String>();
-    expected.add(" _     _  _     _  _  _  _ ");
-    expected.add("| |  | _| _||_||_ |_   ||_|");
-    expected.add("|_|  ||_  _|  | _||_|  ||_|");
-    expected.add("                           ");
-    expected.add("    _  _     _  _  _  _  _ ");
-    expected.add("  | _| _||_||_ |_   ||_||_|");
-    expected.add("  ||_  _|  | _||_|  ||_| _|");
-    expected.add("                           ");
-    expected.add("    _  _     _  _  _     _ ");
-    expected.add("  | _| _||_||_ |_   || ||_|");
-    expected.add("  ||_  _|  | _||_|  || | _|");
-    expected.add("                           ");
-    assertThat(results, is(expected));
+    assertThat(cut.readFile(" src/test/java/.test "), is(testRawFileLines()));
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -198,6 +170,23 @@ public class BankOcrTest  {
     expected.add("012345678 ERR");
     expected.add("123456789");
     expected.add("1234567?9 ILL");
+    return expected;
+  }
+
+  private List<String> testRawFileLines() {
+    final List<String> expected = new ArrayList<String>();
+    expected.add(" _     _  _     _  _  _  _ ");
+    expected.add("| |  | _| _||_||_ |_   ||_|");
+    expected.add("|_|  ||_  _|  | _||_|  ||_|");
+    expected.add("                           ");
+    expected.add("    _  _     _  _  _  _  _ ");
+    expected.add("  | _| _||_||_ |_   ||_||_|");
+    expected.add("  ||_  _|  | _||_|  ||_| _|");
+    expected.add("                           ");
+    expected.add("    _  _     _  _  _     _ ");
+    expected.add("  | _| _||_||_ |_   || ||_|");
+    expected.add("  ||_  _|  | _||_|  || | _|");
+    expected.add("                           ");
     return expected;
   }
 

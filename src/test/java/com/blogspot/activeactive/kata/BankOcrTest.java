@@ -147,10 +147,7 @@ public class BankOcrTest  {
   @Test
   public void parseFile_shouldReturnAListOfStringsContainingTheParsedDigits() throws Exception {
     final List<String> results = cut.parseFile("src/test/java/.test");
-    final List<String> expected = new ArrayList<String>();
-    expected.add("012345678");
-    expected.add("123456789");
-    assertThat(results, is(expected));
+    assertThat(results, is(testFileLines()));
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -165,22 +162,14 @@ public class BankOcrTest  {
 
   @Test
   public void main_shouldWriteToDefaultFileWhenPassedOneInput() throws Exception {
-    final List<String> expected = new ArrayList<String>();
-    expected.add("012345678");
-    expected.add("123456789");
-
     BankOcr.main(new String[] { "src/test/java/.test" });
-    assertThat(readFile("output.txt"), is(expected));
+    assertThat(readFile("output.txt"), is(testFileLines()));
   }
 
   @Test
   public void main_shouldWriteToSpecifiedFileWhenPassedTwoInputs() throws Exception {
-    final List<String> expected = new ArrayList<String>();
-    expected.add("012345678");
-    expected.add("123456789");
-
     BankOcr.main(new String[] { "src/test/java/.test", "test.output" });
-    assertThat(readFile("test.output"), is(expected));
+    assertThat(readFile("test.output"), is(testFileLines()));
   }
 
   private List<String> readFile(final String filename) throws Exception {
@@ -194,6 +183,13 @@ public class BankOcrTest  {
       line = r.readLine();
     }
     return results;
+  }
+
+  private List<String> testFileLines() {
+    final List<String> expected = new ArrayList<String>();
+    expected.add("012345678");
+    expected.add("123456789");
+    return expected;
   }
 
   @After

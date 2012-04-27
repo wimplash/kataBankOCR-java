@@ -183,6 +183,26 @@ public class BankOcrTest  {
     assertThat(results, is(expected));
   }
 
+  @Test
+  public void main_shouldWriteToSpecifiedFileWhenPassedTwoInputs() throws Exception {
+    BankOcr.main(new String[] { "src/test/java/.test", "test.output" });
+
+    final File f = new File("test.output");
+    assertThat(f.exists(), is(true));
+    final BufferedReader r = new BufferedReader(new FileReader(f));
+    final List<String> results = new ArrayList<String>();
+    String line = r.readLine();
+    while (line != null) {
+      results.add(line);
+      line = r.readLine();
+    }
+
+    final List<String> expected = new ArrayList<String>();
+    expected.add("012345678");
+    expected.add("123456789");
+    assertThat(results, is(expected));
+  }
+
   @After
   public void cleanupFiles() throws Exception {
     new File("test.output").delete();

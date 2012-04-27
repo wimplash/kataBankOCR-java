@@ -249,6 +249,17 @@ public class EntryTest {
   }
 
   @Test
+  public void isValid_shouldReturnFalseWhenTheEntryHasAnIllegibleDigit() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _     _  _  _  _    ");
+    cut.addLine(" _||_||_ | ||_| _||_||_   |");
+    cut.addLine(" _|  | _|| ||_||_ |_||_|  |");
+    cut.addLine("                           ");
+
+    assertThat(cut.isValid(), is(false));
+  }
+
+  @Test
   public void hasIllegibleDigits_shouldReturnTrueWhenTheEntryContainsIllegibleDigits() {
     final Entry cut = new Entry();
     cut.addLine(" _     _     _  _  _  _  _ ");

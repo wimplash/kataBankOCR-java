@@ -62,6 +62,10 @@ public class Entry {
     return lines.size() == 4;
   }
 
+  public boolean isValid() {
+    return true;
+  }
+
   @Override
   public String toString() {
     if (isFull()) {

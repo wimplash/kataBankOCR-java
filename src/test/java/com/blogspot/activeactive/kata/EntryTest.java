@@ -203,4 +203,16 @@ public class EntryTest {
 
     cut.getChecksum();
   }
+
+  @Test
+  public void isValid_shouldReturnTrueWhenTheEntryIsValid() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _  _ ");
+    cut.addLine(" _||_||_ |_||_| _||_||_ |_ ");
+    cut.addLine(" _|  | _||_||_||_ |_||_| _|");
+    cut.addLine("                           ");
+
+    assertThat(cut.isValid(), is(true));
+  }
+
 }

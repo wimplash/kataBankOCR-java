@@ -5,7 +5,9 @@
 package com.blogspot.activeactive.kata;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,13 +18,36 @@ import java.util.Map;
 
 public class BankOcr {
 
-  public static void main(final String[] args) {
+  public static void main(final String[] args) throws Exception {
+    String inputFile = null;
+    String outputFile = null;
     if (args == null || args.length == 0) {
       throw new IllegalArgumentException("You must provide one or two"
           + " arguments. The first argument is the input file, the second"
           + " argument is the output file. If an output file is not provided"
-          + " program output will go into './.output'.");
+          + " program output will go into './output.txt'.");
+    } else if (args.length == 1) {
+      inputFile = args[0];
+      outputFile = "output.txt";
+    } else {
+      inputFile = args[0];
+      outputFile = args[1];
     }
+    final BankOcr bankOcr = new BankOcr();
+    final List<String> results = bankOcr.parseFile(inputFile);
+
+    final File f = new File(outputFile);
+    f.createNewFile();
+    final FileWriter fw = new FileWriter(f);
+    final BufferedWriter w = new BufferedWriter(fw);
+    for (int i = 0; i < results.size(); i++) {
+      if (i != 0) {
+        w.newLine();
+      }
+      w.write(results.get(i));
+    }
+    w.flush();
+    w.close();
   }
 
   protected List<String> readFile(final String filename) throws IOException {

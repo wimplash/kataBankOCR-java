@@ -5,7 +5,11 @@
 package com.blogspot.activeactive.kata;
 
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -150,12 +154,38 @@ public class BankOcrTest  {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void main_shouldFailWhenPassedNull() {
+  public void main_shouldFailWhenPassedNull() throws Exception {
     BankOcr.main(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void main_shouldFailWhenPassedAnEmptyArray() {
+  public void main_shouldFailWhenPassedAnEmptyArray() throws Exception {
     BankOcr.main(new String[0]);
+  }
+
+  @Test
+  public void main_shouldWriteToDefaultFileWhenPassedOneInput() throws Exception {
+    BankOcr.main(new String[] { "src/test/java/.test" });
+
+    final File f = new File("output.txt");
+    assertThat(f.exists(), is(true));
+    final BufferedReader r = new BufferedReader(new FileReader(f));
+    final List<String> results = new ArrayList<String>();
+    String line = r.readLine();
+    while (line != null) {
+      results.add(line);
+      line = r.readLine();
+    }
+
+    final List<String> expected = new ArrayList<String>();
+    expected.add("012345678");
+    expected.add("123456789");
+    assertThat(results, is(expected));
+  }
+
+  @After
+  public void cleanupFiles() throws Exception {
+    new File("test.output").delete();
+    new File("output.txt").delete();
   }
 }

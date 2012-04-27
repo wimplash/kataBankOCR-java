@@ -16,6 +16,15 @@ import java.util.Map;
 
 public class BankOcr {
 
+  public static void main(final String[] args) {
+    if (args == null || args.length == 0) {
+      throw new IllegalArgumentException("You must provide one or two"
+          + " arguments. The first argument is the input file, the second"
+          + " argument is the output file. If an output file is not provided"
+          + " program output will go into './.output'.");
+    }
+  }
+
   protected List<String> readFile(final String filename) throws IOException {
     final BufferedReader br = createReader(filename);
     final List<String> results = new ArrayList<String>();

@@ -11,14 +11,6 @@ import java.util.List;
 public class Entry {
   private final List<String> lines = new ArrayList<String>();
 
-  public List<String> getLines() {
-    return Collections.unmodifiableList(lines);
-  }
-
-  public boolean isFull() {
-    return lines.size() == 4;
-  }
-
   public boolean addLine(final String line) {
     validateLine(line);
     if (isFull()) {
@@ -26,22 +18,6 @@ public class Entry {
     } else {
       lines.add(line);
       return true;
-    }
-  }
-
-  private void validateLine(final String line) {
-    if (line == null) {
-      throw new IllegalArgumentException("The line parameter is required and"
-          + " must not be null-valued.");
-    }
-    if (line.length() != 27) {
-      throw new IllegalArgumentException("Each valid line contained in the"
-          + " lines parameter must contain exactly 27 characters.");
-    }
-    if (! line.replaceAll("[|_ ]", "").equals("")) {
-      throw new IllegalArgumentException("Each valid line contained in the"
-          + " lines parameter may only contain underscore (\"_\")"
-          + " characters, pipe (\"|\") characters, or spaces (\" \").");
     }
   }
 
@@ -68,6 +44,15 @@ public class Entry {
     }
     return digits;
   }
+
+  public List<String> getLines() {
+    return Collections.unmodifiableList(lines);
+  }
+
+  public boolean isFull() {
+    return lines.size() == 4;
+  }
+
   @Override
   public String toString() {
     if (isFull()) {
@@ -83,6 +68,22 @@ public class Entry {
         buff.append(line);
       }
       return buff.toString();
+    }
+  }
+
+  private void validateLine(final String line) {
+    if (line == null) {
+      throw new IllegalArgumentException("The line parameter is required and"
+          + " must not be null-valued.");
+    }
+    if (line.length() != 27) {
+      throw new IllegalArgumentException("Each valid line contained in the"
+          + " lines parameter must contain exactly 27 characters.");
+    }
+    if (! line.replaceAll("[|_ ]", "").equals("")) {
+      throw new IllegalArgumentException("Each valid line contained in the"
+          + " lines parameter may only contain underscore (\"_\")"
+          + " characters, pipe (\"|\") characters, or spaces (\" \").");
     }
   }
 }

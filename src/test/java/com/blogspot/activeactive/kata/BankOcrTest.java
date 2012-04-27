@@ -148,4 +148,14 @@ public class BankOcrTest  {
     expected.add("123456789");
     assertThat(results, is(expected));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void main_shouldFailWhenPassedNull() {
+    BankOcr.main(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void main_shouldFailWhenPassedAnEmptyArray() {
+    BankOcr.main(new String[0]);
+  }
 }

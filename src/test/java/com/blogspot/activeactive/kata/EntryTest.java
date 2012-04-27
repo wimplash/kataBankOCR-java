@@ -258,4 +258,15 @@ public class EntryTest {
 
     assertThat(cut.hasIllegibleDigits(), is(true));
   }
+
+  @Test
+  public void hasIllegibleDigits_shouldReturnFalseWhenTheEntryDoesNotContainsIllegibleDigits() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _  _ ");
+    cut.addLine(" _||_||_ |_||_| _||_||_ |_ ");
+    cut.addLine(" _|  | _||_||_||_ |_||_| _|");
+    cut.addLine("                           ");
+
+    assertThat(cut.hasIllegibleDigits(), is(false));
+  }
 }

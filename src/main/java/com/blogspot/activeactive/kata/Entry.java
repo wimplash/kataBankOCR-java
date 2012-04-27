@@ -71,7 +71,7 @@ public class Entry {
   }
 
   public boolean hasIllegibleDigits() {
-    return true;
+    return getDigits().contains(Numeral.UNKNOWN.value);
   }
 
   @Override

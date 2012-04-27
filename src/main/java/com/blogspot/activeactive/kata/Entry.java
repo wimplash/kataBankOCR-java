@@ -38,13 +38,13 @@ public class Entry {
   }
 
   public int getChecksum() {
+    if (hasIllegibleDigits()) {
+      throw new IllegalStateException("The entry contains illegible digits");
+    }
     final List<Integer> digits = getDigits();
     int checksum = 0;
     for (int i = 0; i < digits.size(); i++) {
       final int digit = digits.get(digits.size() - (i + 1));
-      if (digit == Numeral.UNKNOWN.value) {
-        throw new IllegalStateException("The entry contains illegible digits");
-      }
       checksum += (i + 1) * digit;
     }
     return checksum;

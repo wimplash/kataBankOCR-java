@@ -193,4 +193,14 @@ public class EntryTest {
 
     assertThat(cut.getChecksum(), is(231));
   }
+
+  @Test(expected = IllegalStateException.class)
+  public void getChecksum_shouldFailWhenTheEntryIsNotFull() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _  _ ");
+    cut.addLine(" _||_||_ |_||_| _||_||_ |_ ");
+    cut.addLine(" _|  | _||_||_||_ |_||_| _|");
+
+    cut.getChecksum();
+  }
 }

@@ -182,4 +182,15 @@ public class EntryTest {
 
     assertThat(cut.toString(), is("012345678"));
   }
+
+  @Test
+  public void getChecksum_shouldReturnTheChecksumForTheGivenEntry() {
+    final Entry cut = new Entry();
+    cut.addLine(" _     _  _  _  _  _  _  _ ");
+    cut.addLine(" _||_||_ |_||_| _||_||_ |_ ");
+    cut.addLine(" _|  | _||_||_||_ |_||_| _|");
+    cut.addLine("                           ");
+
+    assertThat(cut.getChecksum(), is(231));
+  }
 }

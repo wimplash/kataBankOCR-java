@@ -37,6 +37,15 @@ public class Entry {
     return characters;
   }
 
+  public int getChecksum() {
+    final List<Integer> digits = getDigits();
+    int checksum = 0;
+    for (int i = 0; i < digits.size(); i++) {
+      checksum += (i + 1) * digits.get(digits.size() - (i + 1));
+    }
+    return checksum;
+  }
+
   public List<Integer> getDigits() {
     final List<Integer> digits = new ArrayList<Integer>();
     for (final String[] character : getCharacters()) {

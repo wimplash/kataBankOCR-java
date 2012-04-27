@@ -106,6 +106,10 @@ public class BankOcrTest  {
     expected.add("  | _| _||_||_ |_   ||_||_|");
     expected.add("  ||_  _|  | _||_|  ||_| _|");
     expected.add("                           ");
+    expected.add("    _  _     _  _  _     _ ");
+    expected.add("  | _| _||_||_ |_   || ||_|");
+    expected.add("  ||_  _|  | _||_|  || | _|");
+    expected.add("                           ");
     assertThat(results, is(expected));
   }
 
@@ -135,6 +139,10 @@ public class BankOcrTest  {
     expected.add("    _  _     _  _  _  _  _ ");
     expected.add("  | _| _||_||_ |_   ||_||_|");
     expected.add("  ||_  _|  | _||_|  ||_| _|");
+    expected.add("                           ");
+    expected.add("    _  _     _  _  _     _ ");
+    expected.add("  | _| _||_||_ |_   || ||_|");
+    expected.add("  ||_  _|  | _||_|  || | _|");
     expected.add("                           ");
     assertThat(results, is(expected));
   }
@@ -189,6 +197,7 @@ public class BankOcrTest  {
     final List<String> expected = new ArrayList<String>();
     expected.add("012345678 ERR");
     expected.add("123456789");
+    expected.add("1234567?9 ILL");
     return expected;
   }
 

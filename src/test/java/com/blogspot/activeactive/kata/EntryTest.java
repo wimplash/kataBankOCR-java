@@ -227,7 +227,7 @@ public class EntryTest {
   }
 
   @Test
-  public void isValid_shouldReturnTrueWhenTheEntryIsValid() {
+  public void isValid_shouldReturnTrueWhenTheEntryHasAValidChecksum() {
     final Entry cut = new Entry();
     cut.addLine(" _     _  _  _  _  _  _  _ ");
     cut.addLine(" _||_||_ |_||_| _||_||_ |_ ");
@@ -238,7 +238,7 @@ public class EntryTest {
   }
 
   @Test
-  public void isValid_shouldReturnFalseWhenTheEntryIsInvalid() {
+  public void isValid_shouldReturnFalseWhenTheEntryHasAnInvalidChecksum() {
     final Entry cut = new Entry();
     cut.addLine(" _     _  _  _  _  _  _    ");
     cut.addLine(" _||_||_ |_||_| _||_||_   |");

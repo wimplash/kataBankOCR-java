@@ -35,16 +35,20 @@ public class BankOcr {
     }
     final BankOcr bankOcr = new BankOcr();
     final List<String> results = bankOcr.parseFile(inputFile);
+    bankOcr.writeToFile(results, outputFile);
+  }
 
-    final File f = new File(outputFile);
+  protected void writeToFile(final List<String> lines, final String filename)
+      throws IOException {
+    final File f = new File(filename);
     f.createNewFile();
     final FileWriter fw = new FileWriter(f);
     final BufferedWriter w = new BufferedWriter(fw);
-    for (int i = 0; i < results.size(); i++) {
+    for (int i = 0; i < lines.size(); i++) {
       if (i != 0) {
         w.newLine();
       }
-      w.write(results.get(i));
+      w.write(lines.get(i));
     }
     w.flush();
     w.close();

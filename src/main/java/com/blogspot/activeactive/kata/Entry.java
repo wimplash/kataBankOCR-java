@@ -70,6 +70,10 @@ public class Entry {
     return (getChecksum() % 11) == 0;
   }
 
+  public boolean hasIllegibleDigits() {
+    return true;
+  }
+
   @Override
   public String toString() {
     if (isFull()) {

@@ -2,3 +2,5 @@ This project contains an implementation of the BankOCR kata from http://codingdo
 
 This project implements the kata in Java with a Maven2 base for
 importing development tools.
+
+*User story 1 completed*

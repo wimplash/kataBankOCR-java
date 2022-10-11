@@ -1,4 +1,4 @@
-This project contains an implementation of the [BankOCR kata](http://codingdojo.org/cgi-bin/index.pl?KataBankOCR).
+This project contains an implementation of the [BankOCR kata](https://codingdojo.org/kata/BankOCR/).
 
 This project implements the kata in Java with a Maven2 base for
 importing development tools.
